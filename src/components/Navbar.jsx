@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { AuthContext } from "../context/AuthContext";
+import { BookContext } from "../context/BookContext";
 
 const Navbar = () => {
+  const { books } = useContext(BookContext);
   const theme = useContext(ThemeContext);
   const auth = useContext(AuthContext);
 
@@ -12,19 +14,10 @@ const Navbar = () => {
   const { isAuthenticated, toggleAuth } = auth;
 
   return (
-    <nav style={{ background: themeCurrent.ui, color: themeCurrent.syntax }}>
-      <h1>My Application</h1>
-      <div>
-        <button onClick={toggleAuth}>
-          {isAuthenticated ? "Log out" : "Log in"}
-        </button>
-      </div>
-      <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
-      </ul>
-    </nav>
+    <div className="navbar">
+      <h1>Moschino Reading List</h1>
+      <p>Currently you have {books.length} books to get through...</p>
+    </div>
   );
 };
 export default Navbar;
