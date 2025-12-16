@@ -1,12 +1,8 @@
 import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
 import { BookContext } from "../context/BookContext";
 import BookDetails from "./BookDetails";
 
 const BookList = () => {
-  const theme = useContext(ThemeContext);
-  const { isLightTheme, light, dark } = theme;
-  const themeCurrent = isLightTheme ? light : dark;
   const { books } = useContext(BookContext);
 
   return books.length ? (
