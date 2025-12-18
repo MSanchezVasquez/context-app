@@ -1,16 +1,99 @@
-# React + Vite
+# 📚 Moschino Reading List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React application designed to manage a personal reading list. This project serves as a deep dive into **React Hooks**, **Context API**, and **State Management patterns** without external libraries like Redux.
 
-Currently, two official plugins are available:
+built with **Vite**, **Bun**, and **React 19**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Dynamic Book Management:** Add and remove books from your reading list instantly.
+- **Persistent Data:** Uses `localStorage` to save your list, so data remains safe after refreshing the page.
+- **Global State Management:** Powered by React Context API to avoid prop-drilling.
+- **Complex State Logic:** Implements `useReducer` for predictable state transitions.
+- **Empty State Handling:** User-friendly interface when the list is empty.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack & Concepts
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project was built to practice and demonstrate advanced React concepts:
+
+- **Core:** React 19, JavaScript (ES6+).
+- **Build Tool:** Vite (initialized with Bun).
+- **Styling:** CSS3 with Flexbox and responsive design principles.
+- **Utilities:** `uuid` for unique key generation.
+
+### 🧠 Key Concepts Applied
+
+1.  **Context API:**
+
+    - `BookContext`: Manages the list of books and CRUD operations.
+    - _Architecture_: Uses a Provider pattern to wrap the application, allowing any component to access data.
+
+2.  **Hooks Deep Dive:**
+    - **`useReducer`**: Used instead of multiple `useState` calls to handle complex actions (`ADD_BOOK`, `REMOVE_BOOK`) in a centralized reducer file.
+    - **`useContext`**: Consumes global state in components like `BookList` and `NewBookForm`.
+    - **`useEffect`**: Monitors state changes to synchronize the book list with the browser's `localStorage`.
+    - **`useState`**: Manages local form inputs (Controlled Components).
+
+## 📂 Project Structure
+
+```text
+src/
+├── components/
+│   ├── BookDetails.jsx    # Renders individual book item
+│   ├── BookList.jsx       # Consumes context and renders the list
+│   ├── Navbar.jsx         # Displays dynamic book count
+│   └── NewBookForm.jsx    # Form to dispatch 'ADD_BOOK' actions
+├── context/
+│   ├── AuthContext.jsx    # (Architecture layer) Authentication logic
+│   ├── BookContext.jsx    # Main data provider with localStorage logic
+│   └── ThemeContext.jsx   # (Architecture layer) Theming logic
+├── reducers/
+│   └── bookReducer.js     # Pure function handling state changes
+├── App.jsx                # Component composition and Provider nesting
+└── main.jsx               # Entry point
+```
+
+## ⚡ Getting Started
+
+This project uses [Bun](https://bun.sh) as the package manager and runtime.
+
+1. **Clone the repository**
+
+```bash
+git clone [https://github.com/your-username/reading-list-context.git](https://github.com/your-username/reading-list-context.git)
+cd reading-list-context
+
+```
+
+2. **Install dependencies**
+
+```bash
+bun install
+
+```
+
+3. **Run the development server**
+
+```bash
+bun run dev
+
+```
+
+4. **Build for production**
+
+```bash
+bun run build
+
+```
+
+## 🎨 Future Improvements
+
+- Re-enable the Theme Toggle UI (Logic already exists in `ThemeContext`).
+- Implement the Login/Logout UI (Logic already exists in `AuthContext`).
+- Add filtering options (e.g., Read vs Unread).
+
+---
+
+Made with 💜 learning React Context & Hooks.
